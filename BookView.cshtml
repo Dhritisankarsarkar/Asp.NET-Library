@@ -1,0 +1,64 @@
+﻿@model IEnumerable<WebApplication24.Models.Book>
+
+@{
+    ViewBag.Title = "BookView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>BookView</h2>
+
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+<table class="table">
+    <tr>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Book_ID)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Book_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Book_Author)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date_Added)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Available_Books)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Book_ID)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Book_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Book_Author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date_Added)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Available_Books)
+            </td>
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+            </td>
+        </tr>
+    }
+
+</table>
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-2">
+        <label class="label-success">@ViewBag.Message</label>
+    </div>
+</div>

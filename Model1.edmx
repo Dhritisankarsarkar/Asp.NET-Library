@@ -1,0 +1,249 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="FinalProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Book">
+          <Key>
+            <PropertyRef Name="Book_ID" />
+          </Key>
+          <Property Name="Book_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Book_Name" Type="varchar" MaxLength="50" />
+          <Property Name="Book_Author" Type="varchar" MaxLength="50" />
+          <Property Name="Date_Added" Type="datetime" />
+          <Property Name="Available_Books" Type="int" />
+        </EntityType>
+        <EntityType Name="Borrow">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Book_Name" Type="varchar" MaxLength="50" />
+          <Property Name="Book_ID" Type="int" />
+          <Property Name="Customer_ID" Type="int" />
+          <Property Name="Borrow_Date" Type="datetime" />
+          <Property Name="Return_Date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Customer1">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="Admin" Type="bit" />
+        </EntityType>
+        <Association Name="FK__Borrow__Book_ID__286302EC">
+          <End Role="Book" Type="Self.Book" Multiplicity="0..1" />
+          <End Role="Borrow" Type="Self.Borrow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="Book_ID" />
+            </Principal>
+            <Dependent Role="Borrow">
+              <PropertyRef Name="Book_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Borrow__Book_ID__2B3F6F97">
+          <End Role="Book" Type="Self.Book" Multiplicity="0..1" />
+          <End Role="Borrow" Type="Self.Borrow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="Book_ID" />
+            </Principal>
+            <Dependent Role="Borrow">
+              <PropertyRef Name="Book_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Borrow__Customer__2C3393D0">
+          <End Role="Customer1" Type="Self.Customer1" Multiplicity="0..1" />
+          <End Role="Borrow" Type="Self.Borrow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer1">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Borrow">
+              <PropertyRef Name="Customer_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FinalProjectModelStoreContainer">
+          <EntitySet Name="Book" EntityType="Self.Book" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Borrow" EntityType="Self.Borrow" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer1" EntityType="Self.Customer1" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Borrow__Book_ID__286302EC" Association="Self.FK__Borrow__Book_ID__286302EC">
+            <End Role="Book" EntitySet="Book" />
+            <End Role="Borrow" EntitySet="Borrow" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Borrow__Book_ID__2B3F6F97" Association="Self.FK__Borrow__Book_ID__2B3F6F97">
+            <End Role="Book" EntitySet="Book" />
+            <End Role="Borrow" EntitySet="Borrow" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Borrow__Customer__2C3393D0" Association="Self.FK__Borrow__Customer__2C3393D0">
+            <End Role="Customer1" EntitySet="Customer1" />
+            <End Role="Borrow" EntitySet="Borrow" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FinalProjectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Book">
+          <Key>
+            <PropertyRef Name="Book_ID" />
+          </Key>
+          <Property Name="Book_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Book_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Book_Author" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Date_Added" Type="DateTime" Precision="3" />
+          <Property Name="Available_Books" Type="Int32" />
+          <NavigationProperty Name="Borrow" Relationship="Self.FK__Borrow__Book_ID__286302EC" FromRole="Book" ToRole="Borrow" />
+          <NavigationProperty Name="Borrow1" Relationship="Self.FK__Borrow__Book_ID__2B3F6F97" FromRole="Book" ToRole="Borrow" />
+        </EntityType>
+        <EntityType Name="Borrow">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Book_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Book_ID" Type="Int32" />
+          <Property Name="Customer_ID" Type="Int32" />
+          <Property Name="Borrow_Date" Type="DateTime" Precision="3" />
+          <Property Name="Return_Date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Book" Relationship="Self.FK__Borrow__Book_ID__286302EC" FromRole="Borrow" ToRole="Book" />
+          <NavigationProperty Name="Book1" Relationship="Self.FK__Borrow__Book_ID__2B3F6F97" FromRole="Borrow" ToRole="Book" />
+          <NavigationProperty Name="Customer1" Relationship="FinalProjectModel.FK__Borrow__Customer__2C3393D0" FromRole="Borrow" ToRole="Customer1" />
+        </EntityType>
+        <Association Name="FK__Borrow__Book_ID__286302EC">
+          <End Role="Book" Type="Self.Book" Multiplicity="0..1" />
+          <End Role="Borrow" Type="Self.Borrow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="Book_ID" />
+            </Principal>
+            <Dependent Role="Borrow">
+              <PropertyRef Name="Book_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Borrow__Book_ID__2B3F6F97">
+          <End Role="Book" Type="Self.Book" Multiplicity="0..1" />
+          <End Role="Borrow" Type="Self.Borrow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="Book_ID" />
+            </Principal>
+            <Dependent Role="Borrow">
+              <PropertyRef Name="Book_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FinalProjectEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Book" EntityType="Self.Book" />
+          <EntitySet Name="Borrow" EntityType="Self.Borrow" />
+          <AssociationSet Name="FK__Borrow__Book_ID__286302EC" Association="Self.FK__Borrow__Book_ID__286302EC">
+            <End Role="Book" EntitySet="Book" />
+            <End Role="Borrow" EntitySet="Borrow" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Borrow__Book_ID__2B3F6F97" Association="Self.FK__Borrow__Book_ID__2B3F6F97">
+            <End Role="Book" EntitySet="Book" />
+            <End Role="Borrow" EntitySet="Borrow" />
+          </AssociationSet>
+          <EntitySet Name="Customer1" EntityType="FinalProjectModel.Customer1" />
+          <AssociationSet Name="FK__Borrow__Customer__2C3393D0" Association="FinalProjectModel.FK__Borrow__Customer__2C3393D0">
+            <End Role="Customer1" EntitySet="Customer1" />
+            <End Role="Borrow" EntitySet="Borrow" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Customer1">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Admin" Type="Boolean" />
+          <NavigationProperty Name="Borrow" Relationship="FinalProjectModel.FK__Borrow__Customer__2C3393D0" FromRole="Customer1" ToRole="Borrow" />
+        </EntityType>
+        <Association Name="FK__Borrow__Customer__2C3393D0">
+          <End Type="FinalProjectModel.Customer1" Role="Customer1" Multiplicity="0..1" />
+          <End Type="FinalProjectModel.Borrow" Role="Borrow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer1">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Borrow">
+              <PropertyRef Name="Customer_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FinalProjectModelStoreContainer" CdmEntityContainer="FinalProjectEntities">
+          <EntitySetMapping Name="Book">
+            <EntityTypeMapping TypeName="FinalProjectModel.Book">
+              <MappingFragment StoreEntitySet="Book">
+                <ScalarProperty Name="Book_ID" ColumnName="Book_ID" />
+                <ScalarProperty Name="Book_Name" ColumnName="Book_Name" />
+                <ScalarProperty Name="Book_Author" ColumnName="Book_Author" />
+                <ScalarProperty Name="Date_Added" ColumnName="Date_Added" />
+                <ScalarProperty Name="Available_Books" ColumnName="Available_Books" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Borrow">
+            <EntityTypeMapping TypeName="FinalProjectModel.Borrow">
+              <MappingFragment StoreEntitySet="Borrow">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Book_Name" ColumnName="Book_Name" />
+                <ScalarProperty Name="Book_ID" ColumnName="Book_ID" />
+                <ScalarProperty Name="Customer_ID" ColumnName="Customer_ID" />
+                <ScalarProperty Name="Borrow_Date" ColumnName="Borrow_Date" />
+                <ScalarProperty Name="Return_Date" ColumnName="Return_Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customer1">
+            <EntityTypeMapping TypeName="FinalProjectModel.Customer1">
+              <MappingFragment StoreEntitySet="Customer1">
+                <ScalarProperty Name="Admin" ColumnName="Admin" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
