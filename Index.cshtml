@@ -1,0 +1,52 @@
+﻿@model IEnumerable<WebApplication24.Models.Customer1>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Admin_LayoutPage1.cshtml";
+}
+
+<h2  class="purple-text" style="color: violet;">Users</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table" border="1" >
+    <tr>
+        <th class="c-text" style="color: indianred;" >
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th class="c-text" style="color: indianred;">
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th class="c-text" style="color: lightgreen;">
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+        <th class="c-text" style="color: lightpink;">
+            @Html.DisplayNameFor(model => model.Admin)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Admin)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>
